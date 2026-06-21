@@ -1,5 +1,14 @@
 import { useState } from "react";
 
+function GreetingBar({ onClose }) {
+  return (
+    <div style={{ background: "linear-gradient(135deg, #43a047, #66bb6a)", color: "#fff", padding: "10px 20px", display: "flex", alignItems: "center", justifyContent: "center", gap: 12, fontWeight: 700, fontSize: 14, position: "relative" }}>
+      <span>👋 Привет, как дела?</span>
+      <button onClick={onClose} style={{ position: "absolute", right: 16, background: "transparent", border: "none", color: "#fff", fontSize: 18, cursor: "pointer", lineHeight: 1 }}>×</button>
+    </div>
+  );
+}
+
 const TEMPLATES = [
   {
     id: "dark-diagonal",
@@ -156,6 +165,7 @@ function BannerPreview({ data, template }) {
 
 export default function App() {
   const [activeTab, setActiveTab] = useState("edit");
+  const [showGreeting, setShowGreeting] = useState(true);
   const [templateIdx, setTemplateIdx] = useState(0);
   const [data, setData] = useState({
     logo: "AKFA",
@@ -189,6 +199,7 @@ export default function App() {
 
   return (
     <div style={{ minHeight: "100vh", background: "#f8f8f8", fontFamily: "'Segoe UI', sans-serif" }}>
+      {showGreeting && <GreetingBar onClose={() => setShowGreeting(false)} />}
       <div style={{ background: "#1a1a1a", color: "#fff", padding: "16px 20px", display: "flex", alignItems: "center", gap: 12 }}>
         <div style={{ width: 32, height: 32, borderRadius: 8, background: "linear-gradient(135deg, #e53935, #ff7043)", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 900, fontSize: 16 }}>B</div>
         <div>
